@@ -1,12 +1,8 @@
 from core.models.listas import pacientes
-
-these = []
+from core.models.listas import these
 
 # Bloco de código que busca pacientes por nome
-def busca():
-    print('\n=== Busca de Paciente ===\n')
-    procura = input('Qual é o nome do paciente que está procurando?\n'
-                    'Paciente: ')
+def procura(paciente: str):
     
     # Logo após o nome do paciente ser informado pelo o usuário, o sistema procura pelo nome dele colocando as letras digitadas na busca e as letras digitadas na
     # hora do cadastro para ver se há alguem com esse nome

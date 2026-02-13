@@ -28,3 +28,4 @@ def cadastro():
         print(f'Paciente {paciente.nome} cadastrado com sucesso!')
     except ValueError as e:
         print(f'Erro ao cadastrar paciente: {e}')
+        
