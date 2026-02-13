@@ -1,4 +1,4 @@
-from services.cadastro import cadastrar
+from core.services.cadastro import cadastrar
 
 # Bloco de código para o cadastro de novos pacientes e suas informações
 def cadastro():

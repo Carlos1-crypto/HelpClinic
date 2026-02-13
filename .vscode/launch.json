@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Debug com caminho correto",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "cwd": "U:\\vscode codes\\HelpClinic",
+            "env": {
+                "PYTHONPATH": "U:\\vscode codes\\HelpClinic"
+            }
+        }
+    ]
+}
