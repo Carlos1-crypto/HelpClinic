@@ -1,10 +1,18 @@
 from core.cli.cadastro_cli import cadastro
 from core.cli.informações_cli import informações
 from core.cli.busca_cli import busca
-from core.cli.lista import lista
-from core.cli.corrigir import corrigir
-from core.cli.agendamento import agendamento
-from core.cli.checarconsultas import consultas
+from flask import Flask
+
+
+app = Flask(__name__)
+
+from routes import *
+
+if __name__ == '__main__':
+    app.run()
+
+
+
 
 # Primeiro bloco do código que o sistema executa que leva para as outras funções do sistema
 def recepcao():
