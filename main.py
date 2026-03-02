@@ -1,6 +1,10 @@
 from core.cli.cadastro_cli import cadastro
-from core.cli.informações_cli import informações
+from core.cli.estatísticas_cli import informações
 from core.cli.busca_cli import busca
+from core.cli.lista_cli import lista
+from core.cli.corrigir_cli import corrigir
+from core.cli.agendamento_cli import agendamento
+from core.cli.checarconsultas_cli import consultas
 from flask import Flask
 
 
