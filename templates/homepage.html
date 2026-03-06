@@ -2,15 +2,40 @@
 <html lang="pt-br">
 
 <head>
-    <title>HelpClinic</title>
+    <title>HelpClinic Login</title>
     <meta name="description" content="Um site que busca ajudar clínicas de hospitais">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../static/style.css">
 </head>
 
 <body>
-    <header>
-        <h1>Seja bem vindo ao HelpClinic!</h1>
-    </header>
     <main>
+        <form>
+            <div class="container">
+                <h1>Login HelpClinic</h1>
+                <div id="box" class="input-box">
+                    <input placeholder='Usuário' type="email">
+                    <i class="bx bxs-user"></i>
+                </div>
+                <div>
+                    <input placeholder='Senha' type="password">
+                    <i class="bx bxs-lock-alt"></i>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox">
+                        Lembrar minha senha
+                    </label>
+                    <br>
+
+                    <a href="#">Esqueci minha senha</a>
+                </div>
+                <div>
+                    <p>Não tem uma conta? <a href="#">Cadastre-se</a></p>
+                </div>
+                <button type="submit">Login</button>
+            </div>
+        </form>
 
     </main>
     <footer>
