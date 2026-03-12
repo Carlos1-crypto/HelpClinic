@@ -14,7 +14,8 @@ body {
     /* Centraliza horizontalmente */
     align-items: center;
     /* Centraliza VERTICALMENTE */
-    background: url(..img/image.png);
+    background: url("../img/cadastro.png") no-repeat center center;
+    background-size: cover;
 }
 
 .container {
@@ -22,7 +23,7 @@ body {
     /* Largura */
     min-height: 260px;
     /* Altura mínima */
-    background-color: #f0f0f0;
+    background-color: #7268e7;
     /* Cor de fundo */
     border: 2px solid #333;
     /* Borda: espessura, tipo, cor */

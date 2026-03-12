@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Cadastro</title>
+    <meta name="HelpClinic" content="Um site que busca ajudar clínicas de hospitais">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_cadastro.css') }}">
+</head>
+
+<body>
+    <main>
+        <form>
+            <div class="container">
+                <h1>Cadastro HelpClinic</h1>
+                <div id="box" class="input-box">
+                    <h4>Digite seu endereço de email</h4>
+                    <input placeholder='Usuário' type="email">
+                    <i class="bx bxs-user"></i>
+                </div>
+                <div>
+                    <h4>Defina sua senha</h4>
+                    <input placeholder='Senha' type="password">
+                    <i class="bx bxs-lock-alt"></i>
+                </div>
+                <div>
+                    <input placeholder='Confirme a senha' type="password">
+                    <i class="bx bxs-lock-alt"></i>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox">
+                        Lembrar minha senha
+                    </label>
+                    <br>
+                    <br>
+
+                    <button type="submit">Cadastre-se</button>
+                </div>
+        </form>
+
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
+</html>

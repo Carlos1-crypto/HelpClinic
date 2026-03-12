@@ -5,6 +5,7 @@ from core.cli.lista_cli import lista
 from core.cli.corrigir_cli import corrigir
 from core.cli.agendamento_cli import agendamento
 from core.cli.checarconsultas_cli import consultas
+import sys
 from flask import Flask
 
 
@@ -12,8 +13,8 @@ app = Flask(__name__)
 
 from routes import *
 
-if __name__ == '__main__':
-    app.run()
+def run_server():
+    app.run(debug=True)
 
 
 
@@ -58,4 +59,14 @@ def recepcao():
             case _:
                 print("Opção inválida!")
 
-recepcao()
+
+def main():
+    # Execute o servidor Flask por padrão. Use --cli para rodar a versão de terminal.
+    if "--cli" in sys.argv:
+        recepcao()
+    else:
+        run_server()
+
+
+if __name__ == '__main__':
+    main()

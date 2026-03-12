@@ -3,9 +3,9 @@
 
 <head>
     <title>HelpClinic Login</title>
-    <meta name="description" content="Um site que busca ajudar clínicas de hospitais">
+    <meta name="HelpClinic" content="Um site que busca ajudar clínicas de hospitais">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_login.css') }}">
 </head>
 
 <body>
@@ -31,7 +31,7 @@
                     <a href="#">Esqueci minha senha</a>
                 </div>
                 <div>
-                    <p>Não tem uma conta? <a href="#">Cadastre-se</a></p>
+                    <p>Não tem uma conta? <a href="{{ url_for('cadastro') }}">Cadastre-se</a></p>
                 </div>
                 <button type="submit">Login</button>
             </div>
