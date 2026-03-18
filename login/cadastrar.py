@@ -1,12 +1,12 @@
-import mysql.connector
-
-users = {}
-
-conexao = mysql.connector
+from dados import cursor
 
 class Usuário:
     def __init__(self, user, password):
         self.user = user
         self.password = password
-    def inserir_banco():
-        users.append(Usuário.user, )
+    def inserir_banco(self):
+        comando = f"""INSERT INTO usuários(usuário, senha) VALUES
+            ({self.user}, {self.password})"""
+        cursor.execute(comando)
+        cursor.commit()
+        

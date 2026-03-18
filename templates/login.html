@@ -10,15 +10,25 @@
 
 <body>
     <main>
-        <form>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class="flashes">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+        <form action="/acesso" method="post">
             <div class="container">
                 <h1>Login HelpClinic</h1>
                 <div id="box" class="input-box">
-                    <input placeholder='Usuário' type="email">
+                    <input placeholder='Usuário' name="Usuário" type="text" required>
                     <i class="bx bxs-user"></i>
                 </div>
                 <div>
-                    <input placeholder='Senha' type="password">
+                    <input placeholder='Senha' name="Senha" type="password" required>
                     <i class="bx bxs-lock-alt"></i>
                 </div>
                 <div>
