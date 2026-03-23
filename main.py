@@ -8,7 +8,6 @@ from core.cli.checarconsultas_cli import consultas
 import sys
 from flask import Flask
 
-
 app = Flask(__name__)
 app.secret_key = 'c87e5fa8949639d57ad2914c7a4786e6'
 
@@ -16,9 +15,6 @@ from routes import *
 
 def run_server():
     app.run(debug=True)
-
-
-
 
 # Primeiro bloco do código que o sistema executa que leva para as outras funções do sistema
 def recepcao():

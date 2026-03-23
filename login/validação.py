@@ -1,12 +1,17 @@
 from dados import cursor
 accounts = {}
 
-def valida(usuárioent, senhaent):
-    consulta = """SELECT * from usuários"""
+def carregar_usuarios():
+    global accounts
+    consulta = """SELECT usuário, senha FROM Usuarios;"""
     cursor.execute(consulta)
     linhas = cursor.fetchall()
-    for linha in linhas:
-        accounts[linha[1]] = linha[2]
+    accounts = {linha[0]: linha[1] for linha in linhas}
+
+def valida(usuárioent, senhaent):
+    global accounts
+    carregar_usuarios()
+
     if usuárioent in accounts and accounts[usuárioent] == senhaent:
         return True
     else:

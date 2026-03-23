@@ -43,7 +43,7 @@ body {
     /* Espaçamento entre os itens dentro do container */
 }
 
-.container input[type="text"],
+.container input[type="email"],
 .container input[type="password"] {
     width: 100%;
     padding: 10px 12px;

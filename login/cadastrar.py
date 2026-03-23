@@ -5,8 +5,7 @@ class Usuário:
         self.user = user
         self.password = password
     def inserir_banco(self):
-        comando = f"""INSERT INTO usuários(usuário, senha) VALUES
-            ({self.user}, {self.password})"""
+        comando = f"""INSERT INTO Usuarios(usuário, senha) VALUES ('{self.user}', '{self.password}');"""
         cursor.execute(comando)
         cursor.commit()
         
