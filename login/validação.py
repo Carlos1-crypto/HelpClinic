@@ -1,18 +1,38 @@
-from dados import cursor
-accounts = {}
+from DB_data import cursor
+import bcrypt
 
-def carregar_usuarios():
-    global accounts
-    consulta = """SELECT usuário, senha FROM Usuarios;"""
-    cursor.execute(consulta)
-    linhas = cursor.fetchall()
-    accounts = {linha[0]: linha[1] for linha in linhas}
+def carregar_usuario(usuario):
+    """Carrega um usuário específico do banco de dados."""
+    consulta = "SELECT usuário, senha FROM Usuarios WHERE usuário = %s"
+    cursor.execute(consulta, (usuario,))
+    resultado = cursor.fetchone()
+    return resultado
 
-def valida(usuárioent, senhaent):
-    global accounts
-    carregar_usuarios()
+def valida(usuário_entrada, senha_entrada):
+    """
+    Valida o usuário e senha de forma SEGURA.
 
-    if usuárioent in accounts and accounts[usuárioent] == senhaent:
-        return True
-    else:
+    Usa bcrypt.checkpw() para proteger contra timing attacks e garantir segurança.
+    """
+    try:
+        # Buscar usuário no banco
+        resultado = carregar_usuario(usuário_entrada)
+
+        if resultado is None:
+            # Usuário não existe
+            return False
+
+        usuario_db, hash_db = resultado
+
+        # Comparar senha usando bcrypt
+        # bcrypt.checkpw() é seguro contra timing attacks
+        senha_valida = bcrypt.checkpw(
+            senha_entrada.encode('utf-8'),
+            hash_db.encode('utf-8')  # Se hash está em string, converter para bytes
+        )
+
+        return senha_valida
+
+    except Exception as erro:
+        print(f"Erro ao validar usuário: {erro}")
         return False
