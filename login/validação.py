@@ -3,17 +3,12 @@ import bcrypt
 
 def carregar_usuario(usuario):
     """Carrega um usuário específico do banco de dados."""
-    consulta = "SELECT usuário, senha FROM Usuarios WHERE usuário = %s"
+    consulta = "SELECT email, senha FROM usuarios WHERE email = %s;"
     cursor.execute(consulta, (usuario,))
     resultado = cursor.fetchone()
     return resultado
 
 def valida(usuário_entrada, senha_entrada):
-    """
-    Valida o usuário e senha de forma SEGURA.
-
-    Usa bcrypt.checkpw() para proteger contra timing attacks e garantir segurança.
-    """
     try:
         # Buscar usuário no banco
         resultado = carregar_usuario(usuário_entrada)
