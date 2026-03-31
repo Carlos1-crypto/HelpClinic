@@ -9,10 +9,10 @@ def get_conexao():
     try:
         conexao = mysql.connector.connect(
             host=os.getenv('DB_HOST', 'localhost'),
+            port=int(os.getenv('DB_PORT', 3306)),
             user=os.getenv('DB_USER', 'root'),
-            password=os.getenv('DB_PASSWORD', ''),
-            database=os.getenv('DB_NAME', 'db_helpclinic'),
-            port=int(os.getenv('DB_PORT', 3306))
+            password=os.getenv('DB_PASSWORD', 'c4rl05'),
+            database=os.getenv('DB_NAME', 'helpclinic'),
         )
         print('Conexão bem sucedida.')
         return conexao

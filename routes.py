@@ -1,14 +1,10 @@
 from main import app
-from flask import render_template, request, flash, redirect, url_for
+from flask import render_template, request, redirect, url_for
 from login.validação import valida
 from login.cadastrar import Usuário
 
 @app.route('/')
 def inicio():
-    return render_template('login.html')
-
-@app.route('/login')
-def login():
     return render_template('login.html')
 
 @app.route('/cadastro', methods=['GET', 'POST'])
@@ -23,8 +19,7 @@ def cadastro():
             novo = Usuário(usuário, senha1)
             try:
                 novo.inserir_banco()
-                print("Cadastro realizado com sucesso!")
-                return redirect(url_for('login'))
+                return redirect(url_for('inicio'))
             except:
                 print("ERRO: Cadastro não realizado.")
                 return render_template('cadastro.html')
@@ -38,4 +33,4 @@ def cadastro():
 
 @app.route('/acesso', methods=['POST'])
 def site():
-    render_template('site.html')
+    return render_template('site.html')

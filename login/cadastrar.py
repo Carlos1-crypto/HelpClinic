@@ -17,7 +17,7 @@ class Usuário:
         try:
             senha_criptografada = self.criptografar(self.password)
             cursor.execute(
-                "INSERT INTO Usuarios(usuário, senha) VALUES (%s, %s)",
+                """INSERT INTO usuarios (email, senha) VALUES (%s, %s)""",
                 (self.user, senha_criptografada)
             )
             conexao.commit()

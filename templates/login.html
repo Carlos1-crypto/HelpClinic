@@ -10,16 +10,6 @@
 
 <body>
     <main>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul class="flashes">
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        {% endwith %}
-
         <form action="/acesso" method="post">
             <div class="container">
                 <h1>Login HelpClinic</h1>
