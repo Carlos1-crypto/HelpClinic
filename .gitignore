@@ -30,6 +30,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+*.pyc
 
 # IDE
 .vscode/
@@ -49,5 +50,3 @@ local_settings.py
 # Banco de dados
 *.db
 *.sqlite3
-DB_data.py
-**/DB_data.py

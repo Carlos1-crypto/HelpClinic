@@ -10,20 +10,20 @@
 
 <body>
     <main>
-        <form>
+        <form action="{{ url_for('inicio') }}" method="post">
             <div class="container">
                 <h1>Login HelpClinic</h1>
                 <div id="box" class="input-box">
-                    <input placeholder='E-mail' name="usuário" type="email" required autocomplete="email">
+                    <input placeholder='E-mail' name="email" type="email" required autocomplete="email">
                     <i class="bx bxs-user"></i>
                 </div>
                 <div>
-                    <input placeholder='Senha' name="senha" type="password" required autocomplete="email">
+                    <input placeholder='Senha' name="senha" type="password" required autocomplete="current-password">
                     <i class="bx bxs-lock-alt"></i>
                 </div>
                 <div>
                     <label>
-                        <input type="checkbox" name="lembrar">
+                        <input type="checkbox" name="remember">
                         Lembrar minha senha
                     </label>
                     <br>
