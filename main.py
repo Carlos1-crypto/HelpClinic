@@ -6,11 +6,8 @@ from core.cli.corrigir_cli import corrigir
 from core.cli.agendamento_cli import agendamento
 from core.cli.checarconsultas_cli import consultas
 import sys
-from flask import Flask
-
-app = Flask(__name__)
-
-from routes import *
+from app import app  # Importar app do arquivo centralizado
+import routes  # Registrar routes (evita importação circular)
 
 def run_server():
     app.run(debug=True)

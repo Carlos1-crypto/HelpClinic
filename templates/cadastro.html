@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <title>Cadastro</title>
@@ -11,20 +11,34 @@
 <body>
     <main>
         <form action="{{ url_for('cadastro') }}" method="post">
+            <!-- CSRF Token para proteção contra ataques CSRF -->
+            {{ csrf_token() }}
+
             <div class="container">
                 <h1>Cadastro HelpClinic</h1>
+
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="alert">
+                            {% for message in messages %}
+                                <p>{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+
                 <div id="box" class="input-box">
                     <h4>Digite seu endereço de e-mail</h4>
-                    <input placeholder='E-mail' name="usuário" type="email" autocomplete="email">
+                    <input placeholder='E-mail' name="email" type="email" autocomplete="email" required>
                     <i class="bx bxs-user"></i>
                 </div>
                 <div>
                     <h4>Defina sua senha</h4>
-                    <input placeholder='Senha' name='senha1' type="password" autocomplete="email">
+                    <input placeholder='Senha' name='senha1' type="password" autocomplete="new-password" required>
                     <i class="bx bxs-lock-alt"></i>
                 </div>
                 <div>
-                    <input placeholder='Confirme a senha' name='senha2' type="password" autocomplete="off">
+                    <input placeholder='Confirme a senha' name='senha2' type="password" autocomplete="new-password" required>
                     <i class="bx bxs-lock-alt"></i>
                 </div>
                 <div>
@@ -36,6 +50,10 @@
                     <br>
 
                     <button type="submit">Cadastre-se</button>
+                </div>
+
+                <div>
+                    <p>Já tem uma conta? <a href="{{ url_for('inicio') }}">Faça login</a></p>
                 </div>
         </form>
 
