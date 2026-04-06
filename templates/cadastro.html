@@ -13,6 +13,7 @@
 <body>
     <main>
         <form action="{{ url_for('cadastro') }}" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <div class="container">
                 <h1>Cadastro HelpClinic</h1>
 
@@ -41,13 +42,6 @@
                     <i class="bx bxs-lock-alt"></i>
                 </div>
                 <div>
-                    <label>
-                        <input type="checkbox">
-                        Lembrar minha senha
-                    </label>
-                    <br>
-                    <br>
-
                     <button type="submit">Cadastre-se</button>
                 </div>
 

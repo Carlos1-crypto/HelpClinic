@@ -13,7 +13,7 @@
 <body>
     <main>
         <form action="{{ url_for('inicio') }}" method="post">
-            {{ form.hidden_tag() }}
+            {{ form.csrf_token() }}
             <div class="container">
                 <h1>Login HelpClinic</h1>
 
@@ -27,17 +27,18 @@
                     {% endif %}
                 {% endwith %}
 
-                <div>
-                    <input placeholder='E-mail' name="email" type="email" autocomplete="email" required>
+                <div id="box" class="input-box">
+                    <input placeholder='E-mail' name="email" type="email" required autocomplete="email">
                     <i class="bx bxs-user"></i>
                 </div>
                 <div>
-                    <input placeholder='Senha' name="senha" type="password" autocomplete="current-password" required>
+                    <input placeholder='Senha' name="senha" type="password" required autocomplete="current-password">
                     <i class="bx bxs-lock-alt"></i>
                 </div>
                 <div>
                     <label>
-                        <input type="checkbox"> Lembrar minha senha
+                        <input type="checkbox" name="remember">
+                        Lembrar minha senha
                     </label>
                     <br>
                     <br>

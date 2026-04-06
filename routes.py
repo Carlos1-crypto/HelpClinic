@@ -6,7 +6,6 @@ from functools import wraps
 from datetime import datetime, timezone, timedelta
 from flask import render_template, request, jsonify, redirect, url_for, make_response, flash
 from app import app, csrf
-from forms import LoginForm
 from login.validação import valida
 from login.cadastrar import Usuário
 from forms import LoginForm
@@ -103,13 +102,14 @@ def home():
 def inicio():
     """Rota de login - autentica usuário e cria token JWT."""
     form = LoginForm()
-    if not form.validate_on_submit():
+
+    if request.method == 'GET':
         return render_template('login.html', form=form)
 
-    # Método POST validado - processa o formulário
-    usuário = form.email.data.strip()
-    senha = form.senha.data.strip()
-    remember = form.remember.data
+    # Método POST - processa o formulário
+    usuário = request.form.get('email', '').strip()
+    senha = request.form.get('senha', '').strip()
+    remember = request.form.get('remember') == 'on'
 
     # Validar entrada
     if not usuário or not senha:
@@ -133,21 +133,19 @@ def inicio():
         flash('Erro ao processar login. Tente novamente.')
         return redirect(url_for('inicio'))
 
-    # Crear token JWT
+    # Criar token JWT
     expires_delta = timedelta(days=30) if remember else timedelta(hours=24)
     max_age = 30 * 24 * 60 * 60 if remember else 24 * 60 * 60
 
     try:
-        # Usar timezone.utc em vez de utcnow() (deprecated)
         now = datetime.now(timezone.utc)
         payload = {
             'email': usuário,
-            'iat': now.timestamp(),  # Usar Unix timestamp
-            'exp': (now + expires_delta).timestamp()  # Usar Unix timestamp
+            'iat': now.timestamp(),
+            'exp': (now + expires_delta).timestamp()
         }
         token = jwt.encode(payload, app.config['JWT_SECRET_KEY'], algorithm='HS256')
 
-        # Configurar cookie com segurança
         response = make_response(redirect(url_for('HelpClinic')))
         response.set_cookie(
             'auth_token',
@@ -155,7 +153,7 @@ def inicio():
             max_age=max_age,
             httponly=True,
             samesite='Lax',
-            secure=IS_PRODUCTION  # Usar HTTPS apenas em produção
+            secure=IS_PRODUCTION
         )
 
         mensagem = 'Usuário autenticado com "Lembrar-me" ativado, válido por 30 dias.' if remember else 'Usuário autenticado, válido por 24 horas.'
@@ -234,18 +232,26 @@ def HelpClinic():
 
         # Pega quando o token foi criado e quando expira
         # iat e exp já são timestamps Unix (números)
-        iat = datetime.fromtimestamp(request.user_data['iat'], tz=timezone.utc)
-        exp = datetime.fromtimestamp(request.user_data['exp'], tz=timezone.utc)
+        # Converte para hora local (usa astimezone() sem argumentos)
+        iat = datetime.fromtimestamp(request.user_data['iat']).astimezone()
+        exp = datetime.fromtimestamp(request.user_data['exp']).astimezone()
 
-        # Converter para hora local para exibição
+        # Tempo restante (em hora UTC para cálculo correto)
         agora = datetime.now(timezone.utc)
+        exp_utc = datetime.fromtimestamp(request.user_data['exp'], tz=timezone.utc)
+        tempo_restante = exp_utc - agora
+
+        # Formata tempo restante de forma legível (HH:MM:SS)
+        horas, resto = divmod(int(tempo_restante.total_seconds()), 3600)
+        minutos, segundos = divmod(resto, 60)
+        tempo_formatado = f"{horas:02d}h {minutos:02d}m {segundos:02d}s"
 
         return render_template('site.html',
                           email=email,
                           token_info={
                               'criado_em': iat.strftime('%d/%m/%Y %H:%M:%S'),
                               'expira_em': exp.strftime('%d/%m/%Y %H:%M:%S'),
-                              'tempo_restante': str(exp - agora)
+                              'tempo_restante': tempo_formatado
                           })
     except Exception as e:
         logger.error(f"Erro ao carregar página HelpClinic: {str(e)}")
