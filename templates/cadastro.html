@@ -6,14 +6,13 @@
     <meta name="HelpClinic" content="Um site que busca ajudar clínicas de hospitais">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style_cadastro.css') }}">
+    <!-- CSRF Token para proteção contra ataques CSRF -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>
     <main>
         <form action="{{ url_for('cadastro') }}" method="post">
-            <!-- CSRF Token para proteção contra ataques CSRF -->
-            {{ csrf_token() }}
-
             <div class="container">
                 <h1>Cadastro HelpClinic</h1>
 

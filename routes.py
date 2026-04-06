@@ -6,8 +6,10 @@ from functools import wraps
 from datetime import datetime, timezone, timedelta
 from flask import render_template, request, jsonify, redirect, url_for, make_response, flash
 from app import app, csrf
+from forms import LoginForm
 from login.validação import valida
 from login.cadastrar import Usuário
+from forms import LoginForm
 
 # Configurar logging
 logging.basicConfig(
@@ -100,13 +102,14 @@ def home():
 @app.route('/login', methods=['GET', 'POST'])
 def inicio():
     """Rota de login - autentica usuário e cria token JWT."""
-    if request.method == 'GET':
-        return render_template('login.html')
+    form = LoginForm()
+    if not form.validate_on_submit():
+        return render_template('login.html', form=form)
 
-    # Método POST - processa o formulário
-    usuário = request.form.get('email', '').strip()
-    senha = request.form.get('senha', '').strip()
-    remember = request.form.get('remember') == 'on'
+    # Método POST validado - processa o formulário
+    usuário = form.email.data.strip()
+    senha = form.senha.data.strip()
+    remember = form.remember.data
 
     # Validar entrada
     if not usuário or not senha:
