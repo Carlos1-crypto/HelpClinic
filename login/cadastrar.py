@@ -1,10 +1,12 @@
 from DB_data import inicializar_conexao
 import bcrypt
+from dataclasses import dataclass
 
+@dataclass
 class Usuário:
-    def __init__(self, user, password):
-        self.user = user
-        self.password = password
+    __slots__ = ["user", "password"]
+    user: str
+    password: str
 
     def criptografar(self, password):
         """Criptografa a senha usando bcrypt com salt automático."""

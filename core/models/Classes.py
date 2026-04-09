@@ -1,14 +1,16 @@
 from core.models.listas import agendamentos
+from dataclasses import dataclass
 
 # Definição da classe Pacientes e o que cada um deles possui
+@dataclass
 class Paciente:
-    def __init__(self, nome, idade, telefone):
-        self.nome = nome
-        self.idade = idade
-        self.telefone = telefone
+    __slots__ = ["nome", "idade", "telefone"]
+    nome: str
+    idade: int
+    telefone: str
 
 # Definição da classe Consulta e o que é necessário que cada uma tenha
+@dataclass
 class Consulta(Paciente):
-    def __init__(self, nome, telefone, data):
-        super().__init__(nome, telefone)
-        self.data = data
+    __slots__ = ["nome", "idade", "telefone", "data"]
+    data: str
