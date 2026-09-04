@@ -1,3 +1,5 @@
+# Dados do banco de dados e funções de conexão
+
 import os
 import mysql.connector
 from dotenv import load_dotenv

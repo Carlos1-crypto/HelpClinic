@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelpClinic - Sistema Moderno de Gerenciamento Clínico</title>
+    
+    <!-- Preconnect para otimização de fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    
+    <!-- CSS Específico -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+<body>
+    <!-- Status Badge -->
+    <div class="status-badge">
+        <div class="status-dot"></div>
+        API Online
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">✨ Bem-vindo ao HelpClinic</div>
+            <h1>Sistema Moderno de Gerenciamento de Clínicas</h1>
+            <p>Solução completa para organizar pacientes, agendamentos e consultas com segurança de nível profissional.</p>
+            <div class="hero-buttons">
+                <a href="http://localhost:3000" class="btn btn-primary">🚀 Acessar App</a>
+                <button class="btn btn-secondary" onclick="document.querySelector('.api-section').scrollIntoView({behavior: 'smooth'})">📚 Ver API</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">Recursos Principais</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔐</div>
+                <h3>Segurança Enterprise</h3>
+                <p>Senhas criptografadas com bcrypt e autenticação JWT. Seus dados estão protegidos com os melhores padrões de segurança.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <h3>Agendamento Inteligente</h3>
+                <p>Sistema de marcação de consultas com calendário brasileiro integrado, validações automáticas e notificações.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>Gestão de Pacientes</h3>
+                <p>Cadastro completo com histórico de consultas, informações de contato e histórico médico organizado.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Relatórios Avançados</h3>
+                <p>Análises de desempenho, estatísticas de consultas e insights sobre sua clínica em tempo real.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <h3>API REST Profissional</h3>
+                <p>Backend desenvolvido em Flask com CORS, suportando múltiplas plataformas e integrações externas.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Frontend Ultra Moderno</h3>
+                <p>Interface construída com Next.js, React e TypeScript. Experiência de usuário otimizada e responsiva.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Section -->
+    <section class="api-section">
+        <div class="api-content">
+            <h2 class="section-title">Endpoints da API</h2>
+            <div class="endpoints-grid">
+                <div class="endpoint-card">
+                    <span class="method-badge method-post">POST</span>
+                    <div class="endpoint-path">/api/auth/login</div>
+                    <div class="endpoint-desc">Autenticar usuário e obter token JWT</div>
+                </div>
+                <div class="endpoint-card">
+                    <span class="method-badge method-post">POST</span>
+                    <div class="endpoint-path">/api/auth/register</div>
+                    <div class="endpoint-desc">Registrar novo usuário no sistema</div>
+                </div>
+                <div class="endpoint-card">
+                    <span class="method-badge method-post">POST</span>
+                    <div class="endpoint-path">/api/auth/logout</div>
+                    <div class="endpoint-desc">Encerrar sessão e limpar token</div>
+                </div>
+                <div class="endpoint-card">
+                    <span class="method-badge method-get">GET</span>
+                    <div class="endpoint-path">/api/auth/me</div>
+                    <div class="endpoint-desc">Obter dados do usuário autenticado</div>
+                </div>
+            </div>
+
+            <!-- Code Block -->
+            <div class="code-section">
+                <div class="code-block">
+                    <code><span class="code-comment"># Exemplo de login</span></code>
+                    <code>curl -X POST http://localhost:5000/api/auth/login \</code>
+                    <code>&nbsp;&nbsp;-H "Content-Type: application/json" \</code>
+                    <code>&nbsp;&nbsp;-d '{</code>
+                    <code>&nbsp;&nbsp;&nbsp;&nbsp;"email": "usuario@example.com",</code>
+                    <code>&nbsp;&nbsp;&nbsp;&nbsp;"senha": "Pass123"</code>
+                    <code>&nbsp;&nbsp;}'</code>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>🏥 HelpClinic</h4>
+                <a href="#" onclick="window.location.href='http://localhost:3000'">Aplicação</a>
+                <a href="#" onclick="window.location.href='http://localhost:5000'">API</a>
+                <a href="https://github.com/Carlos1-crypto" target="_blank">GitHub</a>
+            </div>
+            <div class="footer-col">
+                <h4>Tecnologia</h4>
+                <a href="https://flask.palletsprojects.com/" target="_blank">Flask</a>
+                <a href="https://nextjs.org/" target="_blank">Next.js</a>
+                <a href="https://www.mysql.com/" target="_blank">MySQL</a>
+            </div>
+            <div class="footer-col">
+                <h4>Recursos</h4>
+                <a href="#">Documentação</a>
+                <a href="#">Status</a>
+                <a href="#">Suporte</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="#">Privacidade</a>
+                <a href="#">Termos</a>
+                <a href="#">Cookies</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>© 2026 HelpClinic. Todos os direitos reservados.</div>
+            <div>Desenvolvido com ❤️ por <a href="https://github.com/Carlos1-crypto" target="_blank">Carlos1-crypto</a></div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

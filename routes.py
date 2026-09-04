@@ -1,3 +1,5 @@
+# Gerenciamento de rotas e autenticação usando Flask, JWT e cookies
+
 import jwt
 import os
 import logging
@@ -246,7 +248,7 @@ def HelpClinic():
         minutos, segundos = divmod(resto, 60)
         tempo_formatado = f"{horas:02d}h {minutos:02d}m {segundos:02d}s"
 
-        return render_template('site.html',
+        return render_template('index.html',
                           email=email,
                           token_info={
                               'criado_em': iat.strftime('%d/%m/%Y %H:%M:%S'),
